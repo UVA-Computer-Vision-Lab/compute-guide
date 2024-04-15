@@ -1,41 +1,23 @@
-## Welcome to GitHub Pages
+## Public Servers
 
-🚀 🐼
+The UVA CS Department provides servers for computing needs. See [UVA Computing Resources](https://www.cs.virginia.edu/wiki/doku.php?id=compute_resources) for more information. 
 
-yes?
+### How to use
 
-You can use the [editor on GitHub](https://github.com/pmarsceill/test-jtd/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+1. Log in to `portal.cs.virginia.edu` through ssh first as a forward server. If you do not have credentials yet, contact the CS IT team to request access for your computing ID.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+2. You have two choices:
 
-### Markdown
+    - Submit a slurm script([UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm)) to run a job.
+    - Use the `srun` command like the one below to use the server interactively. Explanations about the arguments can be found in [UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm). 
+        ```
+        srun -w puma02 -p gpu --pty bash -i -l -
+        ```
+3. If we have reserved a server like `puma02` ([slurm reservations](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm_reservations)), use the command below instead.  Replace `rry4fg_7` with the reservation tag provided by IT. Note that you cannot use the reserved servers without the tag, even if your ID is on the reservation user ID list.
+    ```
+    srun --reservation=rry4fg_7  -w puma02 -p gpu --pty bash -i -l - 
+    ```
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Server Issues
+If you encounter any hardware or software issues with the servers, send an email to cshelpdesk@virginia.edu. 
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/pmarsceill/test-jtd/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
