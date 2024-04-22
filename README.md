@@ -20,12 +20,14 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
     ```
     srun --reservation=rry4fg_7  -w puma02 -p gpu --pty bash -i -l - 
     ```
+
 ### Modules
 Modules are pre-installed software packages in the Slurm system that users can access without root or sudo privileges. 
 
 To view the list of available modules, use the command `module avail`. To load a required module, such as nvtop, use `module load nvtop`. 
 
 If a needed module is not available, contact the CS IT team for assistance with installation or alternative solutions. See [Software Modules](https://www.cs.virginia.edu/wiki/doku.php?id=linux_environment_modules) for more information. 
+
 
 ### Server Issues
 If you encounter any hardware or software issues with the servers, send an email to cshelpdesk@virginia.edu. 
