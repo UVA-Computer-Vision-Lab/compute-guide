@@ -1,12 +1,10 @@
 ---
-title: Test
+title: Nice Tricks
 has_children: true
-nav_order: 2
+nav_order: 1
 ---
 
-# Another page
+# Tricks for Navigating on UVA compute
 
-Test this
-
-
-blah
+- Installation of git-lfs
+- Installation of tmux
