@@ -8,3 +8,4 @@ nav_order: 1
 
 - Installation of git-lfs
 - Installation of tmux
+- Installation of cuda-toolkit
