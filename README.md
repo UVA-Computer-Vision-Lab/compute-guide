@@ -12,7 +12,7 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
 3. Then you have two choices:
 
     - Submit a slurm script([UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm)) to run a job.
-    - Use the `srun` command like the one below to use the server interactively. 
+    - Use the `salloc` command like the one below to use the server interactively. 
         ```
         salloc -p gpu -N 1 -c 10 --mem=30G -J InteractiveJob -t 0-00:30:00 --gres=gpu:2 -C a40
         ```
