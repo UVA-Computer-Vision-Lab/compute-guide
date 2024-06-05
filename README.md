@@ -12,14 +12,18 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
 3. Then you have two choices:
 
     - Submit a slurm script([UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm)) to run a job.
-    - Use the `srun` command like the one below to use the server interactively. Explanations about the arguments can be found in [UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm). 
+    - Use the `srun` command like the one below to use the server interactively. 
         ```
-        srun -w puma02 -p gpu --pty bash -i -l -
+        salloc -p gpu -N 1 -c 10 --mem=30G -J InteractiveJob -t 0-00:30:00 --gres=gpu:2 -C a40
         ```
-4. If we have reserved a server like `puma02` ([slurm reservations](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm_reservations)), use the command below instead.  Replace `rry4fg_7` with the reservation tag provided by IT. Note that you cannot use the reserved servers without the tag, even if your ID is on the reservation user ID list.
-    ```
-    srun --reservation=rry4fg_7  -w puma02 -p gpu --pty bash -i -l - 
-    ```
+        This command allocates two A40 GPUs, 10 CPUs, and 30GB of RAM for a 30-minute session. If no duration is specified, the default maximum runtime is set to four days. More explanations about the arguments can be found in [UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm).
+        Once the server resources are allocated, enter the following command to access the server interactively:
+        ```
+        srun --pty bash -i -l --
+        ```
+4. If we have reserved a server([slurm reservations](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm#reservations)), add `--reservation=rry4fg_7` in the `salloc` command or `#SBATCH --reservation=rry4fg_7` in the `sbatch` script. Replace `rry4fg_7` with the reservation tag provided by IT. 
+Note that you cannot use the reserved servers without the tag, even if your ID is on the reservation user ID list.
+
 
 ### Modules
 Modules are pre-installed software packages in the Slurm system that users can access without root or sudo privileges. 
@@ -27,6 +31,9 @@ Modules are pre-installed software packages in the Slurm system that users can a
 To view the list of available modules, use the command `module avail`. To load a required module, such as nvtop, use `module load nvtop`. 
 
 If a needed module is not available, contact the CS IT team for assistance with installation or alternative solutions. See [Software Modules](https://www.cs.virginia.edu/wiki/doku.php?id=linux_environment_modules) for more information. 
+
+### Development servers
+The `gpusrv[01-19]` servers([GPU servers](https://www.cs.virginia.edu/wiki/doku.php?id=compute_resources#gpu_servers)), which are low GPU memory servers, can be directly accessed via SSH for developing and debugging code. 
 
 
 ### Server Issues
