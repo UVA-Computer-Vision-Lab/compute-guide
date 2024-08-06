@@ -11,7 +11,30 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
     - `scontrol show reservations` : Reserved servers are only available to users on the reservation list.
 3. Then you have two choices:
 
-    - Submit a slurm script([UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm)) to run a job.
+    - Submit a slurm script([UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm)) to run a job. An example is below:
+        ```bash
+        #!/bin/bash
+
+        #SBATCH --job-name=your_job_name
+        #SBATCH --output=%x_%j.out
+        #SBATCH --error=%x_%j.err
+        #SBATCH --partition=gpu
+        #SBATCH --nodes=1
+        #SBATCH --ntasks-per-node=1
+        #SBATCH --cpus-per-task=10
+        #SBATCH --gres=gpu:4
+        #SBATCH --mem=50G
+        #SBATCH --time=D-HH:MM:SS
+        #SBATCH --constraint="a40|a100_80gb|a100_40gb|h100_80gb"   # The requested gpu type could be either a40, a100_80gb, a100_40gb or h100_80gb
+        #SBATCH --reservation=<reservation name>                   # If you have a reservation on the targeted node
+        #SBATCH --mail-type=begin,end,fail
+        #SBATCH --mail-user=<computingID>@virginia.edu
+
+        module load cuda-toolkit-11.8.0                            # Optional, according to your project
+
+        python your_script.py --your_arguments xxx
+        ```
+        Use `sbatch mysbatchscript.sh` to submit the slurm script.
     - Use the `salloc` command like the one below to use the server interactively. 
         ```
         salloc -p gpu -N 1 -c 10 --mem=30G -J InteractiveJob -t 0-00:30:00 --gres=gpu:2 -C a40
@@ -24,6 +47,9 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
 4. If we have reserved a server([slurm reservations](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm#reservations)), add `--reservation=rry4fg_7` in the `salloc` command or `#SBATCH --reservation=rry4fg_7` in the `sbatch` script. Replace `rry4fg_7` with the reservation tag provided by IT. 
 Note that you cannot use the reserved servers without the tag, even if your ID is on the reservation user ID list.
 
+### Public server owned by our group
+
+Node `cheetah06` contains 8 80GB A100 GPUs and is owned by our group. It is open to the public and on the slurm queues. To prevent others from using the machine, you need to put a reservation. Actually, anyone can reserve the server, so for upcoming submission deadlines, it is better to reserve the server in advance. Remember to put all the group members on the list of who can access the reserved server.
 
 ### Modules
 Modules are pre-installed software packages in the Slurm system that users can access without root or sudo privileges. 
