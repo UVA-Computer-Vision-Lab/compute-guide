@@ -1,5 +1,6 @@
 ---
 title: Storage
+parent: CS department servers
 has_children: false
 nav_order: 2
 ---
