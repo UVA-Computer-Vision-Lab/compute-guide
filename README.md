@@ -8,7 +8,10 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
 
 2. Check available servers. Commonly used commands:
     - `sinfo`: Servers in the state of idle and mix are potentially available (sometimes reserved servers are not displayed correctly).
-    - `scontrol show reservations` : Reserved servers are only available to users on the reservation list.
+    - `squeue -p gpu`: Check the queue of the gpu partition to see if there are any jobs waiting to be run.
+    - `scontrol show job <jobid>`: Check the status of a specific job. This could be used to check if a job is waiting for a server that you are also waiting for. 
+    - `scontrol show node <node>`: Check the status of a specific node. This could be used to check the available resources on a node. 
+    - `scontrol show res` : List all reservations including the server, users, and time. Reserved servers are only available to users on the reservation list.
 3. Then you have two choices:
 
     - Submit a slurm script([UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm)) to run a job. An example is below:
@@ -37,9 +40,9 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
         Use `sbatch mysbatchscript.sh` to submit the slurm script.
     - Use the `salloc` command like the one below to use the server interactively. 
         ```
-        salloc -p gpu -N 1 -c 10 --mem=30G -J InteractiveJob -t 0-00:30:00 --gres=gpu:2 -C a40
+        salloc -p gpu -N 1 -c 10 --mem=30G -J InteractiveJob -t 0-00:30:00 --gres=gpu:2 -C a100_80gb
         ```
-        This command allocates two A40 GPUs, 10 CPUs, and 30GB of RAM for a 30-minute session. If no duration is specified, the default maximum runtime is set to four days. More explanations about the arguments can be found in [UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm).
+        This command allocates two A100 80GB GPUs, 10 CPUs, and 30GB of RAM for a 30-minute session. If no duration is specified, the default maximum runtime is set to four days. More explanations about the arguments can be found in [UVA slurm information](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm).
         Once the server resources are allocated, enter the following command to access the server interactively:
         ```
         srun --pty bash -i -l --
