@@ -9,18 +9,18 @@ Welcome to the UVA CV Lab Computing Resources Documentation. This website provid
 
 ## Main Content
 
-1. [Nice Tricks](Tricks.md)
-   - [Install git-lfs](test-child.md)
-   - [Install CUDA toolkit](trick_cuda.md)
-   
-2. [CS department servers](CS_server.md)
+1. [CS department servers](CS_server.md)
    - How to access servers
    - Slurm usage
    - Module management
    - Development server information
-
-3. [Rivanna](Rivanna.md)
+   - [CS storage usage](CS_storage.md)
+2. [Rivanna](Rivanna.md)
    - To be added
+
+3. [Nice Tricks](Tricks.md)
+   - [Install git-lfs](git-lfs.md)
+   - [Install CUDA toolkit](trick_cuda.md)
 
 ## Quick Start
 
