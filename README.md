@@ -47,7 +47,8 @@ The UVA CS Department provides servers for computing needs. See [UVA Computing R
         ```
         srun --pty bash -i -l --
         ```
-4. If we have reserved a server([slurm reservations](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm#reservations)), add `--reservation=rry4fg_7` in the `salloc` command or `#SBATCH --reservation=rry4fg_7` in the `sbatch` script. Replace `rry4fg_7` with the reservation tag provided by IT. 
+4. After a job is started, you could use `srun --pty --overlap --jobid=<jobid> <command>` to run a command on the server. This is useful when you want to run a command on a server that is already running a job. For example, the `<command>` could be `nvtop` to check the GPU usage of the running job. The `<command>` could also be `bash` to open a new terminal on the server. 
+5. If we have reserved a server([slurm reservations](https://www.cs.virginia.edu/wiki/doku.php?id=compute_slurm#reservations)), add `--reservation=rry4fg_7` in the `salloc` command or `#SBATCH --reservation=rry4fg_7` in the `sbatch` script. Replace `rry4fg_7` with the reservation tag provided by IT. 
 Note that you cannot use the reserved servers without the tag, even if your ID is on the reservation user ID list.
 
 ### Public server owned by our group
